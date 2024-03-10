@@ -1,7 +1,14 @@
 class Solution {
 public:
-    int fib(int n) {
+    int fib_dp(int n,vector<int> &dp){
+        if(dp[n] != -1) return dp[n];
         if(n == 0 || n == 1) return n;
-        return fib(n-1)+fib(n-2);
+        return dp[n] = fib_dp(n-1,dp)+fib_dp(n-2,dp);
+    }
+    
+    int fib(int n) {
+        vector<int> dp(n+1,-1);
+        int ans =  fib_dp(n,dp);
+        return ans;
     }
 };
